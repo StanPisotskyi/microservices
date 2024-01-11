@@ -1,0 +1,6 @@
+.idea
+.DS_Store
+customer/app/node_modules
+gateway/app/node_modules
+products/app/node_modules
+shopping/app/node_modules

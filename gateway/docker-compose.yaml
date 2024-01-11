@@ -1,0 +1,16 @@
+services:
+  app:
+    container_name: gateway-service
+    build:
+      dockerfile: ./docker/app/Dockerfile
+    ports:
+      - "8000:3000"
+    volumes:
+      - ./app:/usr/src/app
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    name: microservices
+    driver: bridge

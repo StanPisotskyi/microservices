@@ -1,0 +1,15 @@
+services:
+  app:
+    container_name: shopping-service
+    build:
+      dockerfile: ./docker/app/Dockerfile
+    ports:
+      - "8003:3000"
+    volumes:
+      - ./app:/usr/src/app
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    external: true
