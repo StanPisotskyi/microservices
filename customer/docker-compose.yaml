@@ -6,7 +6,7 @@ services:
     ports:
       - "8001:3000"
     volumes:
-      - ./app:/usr/src/app
+      - ./app/src:/usr/src/app/src
     networks:
       - microservices
 
