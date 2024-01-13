@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use('/customer', proxy('customer-service:3000'));
 app.use('/shopping', proxy('shopping-service:3000'));
-app.use('/', proxy('products-service:3000')); //products
+app.use('/product', proxy('products-service:3000'));
 
 app.listen(port, function () {
     console.log(`Example app listening on port ${port}!`);
