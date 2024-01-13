@@ -5,6 +5,7 @@ const proxy = require('express-http-proxy');
 
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 
 app.use('/customer', proxy('customer-service:3000'));
