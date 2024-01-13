@@ -5,7 +5,7 @@ services:
     restart: always
     volumes:
       - ./docker/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
-      - microservices-app-volume-data:/data/db
+      - microservices-mongodb-data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: 123123
@@ -34,4 +34,4 @@ networks:
     external: true
 
 volumes:
-  microservices-app-volume-data:
+  microservices-mongodb-data:

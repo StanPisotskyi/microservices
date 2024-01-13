@@ -3,31 +3,47 @@ try {
 
     db = db.getSiblingDB('customers-db');
 
-    db.fake.insert({foo: 'hell world', bar: 0});
-
-    db = db.getSiblingDB('products-db');
-
-    db.fake.insert({foo: 'hell world', bar: 0});
-
-    db = db.getSiblingDB('shopping-db');
-
-    db.fake.insert({foo: 'hell world', bar: 0});
-
-    db = db.getSiblingDB('admin');
+    db.fake.insert({foo: 'hello world', bar: 0});
 
     db.createUser(
         {
-            user: "mongouser",
+            user: "customers_db_owner",
             pwd: "password",
             roles: [
                 {
                     role: "readWrite",
                     db: "customers-db"
-                },
+                }
+            ]
+        }
+    );
+
+    db = db.getSiblingDB('products-db');
+
+    db.fake.insert({foo: 'hello world', bar: 0});
+
+    db.createUser(
+        {
+            user: "products_db_owner",
+            pwd: "password",
+            roles: [
                 {
                     role: "readWrite",
                     db: "products-db"
-                },
+                }
+            ]
+        }
+    );
+
+    db = db.getSiblingDB('shopping-db');
+
+    db.fake.insert({foo: 'hello world', bar: 0});
+
+    db.createUser(
+        {
+            user: "shopping_db_owner",
+            pwd: "password",
+            roles: [
                 {
                     role: "readWrite",
                     db: "shopping-db"
