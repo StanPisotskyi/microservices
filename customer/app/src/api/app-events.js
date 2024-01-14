@@ -10,7 +10,7 @@ module.exports = (app) => {
         //handle subscribe events
         service.SubscribeEvents(payload);
 
-        console.log("============= Shopping ================");
+        console.log("============= Customer service received an event ================");
         console.log(payload);
         res.json(payload);
 

@@ -92,7 +92,7 @@ class CustomerService {
 
         console.log('Triggering.... Customer Events');
 
-        payload = JSON.parse(payload);
+        //payload = JSON.parse(payload);
 
         const { event, data } =  payload;
 
