@@ -7,6 +7,13 @@ const AddressSchema = new Schema({
     postalCode: String,
     city: String,
     country: String
+}, {
+    toJSON: {
+        transform(doc, ret) {
+            delete ret.__v;
+        }
+    },
+    timestamps: true
 });
 
 module.exports = mongoose.model('address', AddressSchema);
