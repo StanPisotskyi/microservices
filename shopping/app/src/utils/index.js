@@ -1,5 +1,6 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const axios = require("axios");
 
 const {APP_SECRET} = require("../config");
 
@@ -31,7 +32,7 @@ module.exports.GenerateSignature = async (payload) => {
 
 module.exports.ValidateSignature = async (req) => {
     try {
-        const signature = req.get("Authorization");
+        const signature = req.header("Authorization");
         console.log(signature);
         const payload = await jwt.verify(signature.split(" ")[1], APP_SECRET);
         req.user = payload;
@@ -48,4 +49,10 @@ module.exports.FormateData = (data) => {
     } else {
         throw new Error("Data Not found!");
     }
+};
+
+module.exports.PublishCustomerEvent = async (payload) => {
+    axios.post("http://customer-service:3000/app-events/", {
+        payload,
+    });
 };

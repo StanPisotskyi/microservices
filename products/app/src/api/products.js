@@ -1,10 +1,5 @@
-//const {CUSTOMER_SERVICE, SHOPPING_SERVICE} = require("../config");
 const ProductService = require("../services/product-service");
-const {
-    PublishCustomerEvent,
-    PublishShoppingEvent,
-    //PublishMessage,
-} = require("../utils");
+const { PublishCustomerEvent, PublishShoppingEvent } = require("../utils");
 const UserAuth = require("./middlewares/auth");
 
 module.exports = (app, channel) => {
@@ -65,7 +60,6 @@ module.exports = (app, channel) => {
         );
 
         PublishCustomerEvent(data);
-        //PublishMessage(channel, CUSTOMER_SERVICE, JSON.stringify(data));
 
         res.status(200).json(data.data.product);
     });
@@ -80,7 +74,6 @@ module.exports = (app, channel) => {
             "REMOVE_FROM_WISHLIST"
         );
         PublishCustomerEvent(data);
-        //PublishMessage(channel, CUSTOMER_SERVICE, JSON.stringify(data));
 
         res.status(200).json(data.data.product);
     });
@@ -96,9 +89,6 @@ module.exports = (app, channel) => {
 
         PublishCustomerEvent(data);
         PublishShoppingEvent(data);
-
-        // PublishMessage(channel, CUSTOMER_SERVICE, JSON.stringify(data));
-        // PublishMessage(channel, SHOPPING_SERVICE, JSON.stringify(data));
 
         const response = {product: data.data.product, unit: data.data.qty};
 
@@ -118,9 +108,6 @@ module.exports = (app, channel) => {
         PublishCustomerEvent(data);
         PublishShoppingEvent(data);
 
-        // PublishMessage(channel, CUSTOMER_SERVICE, JSON.stringify(data));
-        // PublishMessage(channel, SHOPPING_SERVICE, JSON.stringify(data));
-
         const response = {product: data.data.product, unit: data.data.qty};
 
         res.status(200).json(response);
@@ -132,9 +119,7 @@ module.exports = (app, channel) => {
             .json({msg: "/products : I am Products Service"});
     });
 
-    //get Top products and category
     app.get("/", async (req, res, next) => {
-        //check validation
         try {
             const {data} = await service.GetProducts();
             return res.status(200).json(data);
